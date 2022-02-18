@@ -1,24 +1,122 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo, getAllTodo } from "./store/actions";
+
+import { Todo } from "./types/todoTypes";
+import TodoItem from "./components/TodoItem";
+import Filter from "./components/Filter";
+import "./App.scss";
+import InputComponent from "./components/InputComponent";
+import Search from "./components/Search";
 
 function App() {
+  const dispatch = useDispatch();
+  const todos = useSelector((state: any) => state.todoReducer.todos);
+
+  const filter = useSelector((state: any) => state.filterReducer.filter);
+  const type = useSelector((state: any) => state.inputReducer.type);
+  const { searchText } = useSelector((state: any) => state.searchReducer);
+  const lengthCheck = (filter: string) => {
+    // todos.filter((todo: Todo) => {todo.completed === false});
+  };
+
+  useEffect(() => {
+    dispatch(getAllTodo());
+    lengthCheck("all");
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1 className="app__title">Things To Do</h1>
+      {type === "add" ? <InputComponent /> : <Search />}
+      <div className="todo-list">
+        {todos.length == 0 && <h2>No Todos</h2>}
+
+        {todos &&
+          filter === "all" &&
+          type === "add" &&
+          todos.map(
+            (todo: Todo) =>
+              !todo.deleted && <TodoItem key={todo.id} todo={todo} />
+          )}
+
+        {todos &&
+          filter === "active" &&
+          type === "add" &&
+          todos.map(
+            (todo: Todo, i: number) =>
+              todo.completed === false &&
+              !todo.deleted && <TodoItem key={todo.id} todo={todo} />
+          )}
+
+        {todos &&
+          filter === "completed" &&
+          type === "add" &&
+          todos.map(
+            (todo: Todo) =>
+              todo.completed === true &&
+              !todo.deleted && <TodoItem key={todo.id} todo={todo} />
+          )}
+
+        {todos &&
+          type === "search" &&
+          filter === "all" &&
+          todos
+            .filter((todo: any) => todo.todo.includes(searchText))
+            .map(
+              (filteredTodo: Todo) =>
+                !filteredTodo.deleted && (
+                  <TodoItem key={filteredTodo.id} todo={filteredTodo} />
+                )
+            )}
+
+        {todos &&
+          type === "search" &&
+          filter === "active" &&
+          todos
+            .filter((todo: any) => todo.todo.includes(searchText))
+            .map(
+              (filteredTodo: Todo) =>
+                filteredTodo.completed === false &&
+                !filteredTodo.deleted && (
+                  <TodoItem key={filteredTodo.id} todo={filteredTodo} />
+                )
+            )}
+
+        {todos &&
+          type === "search" &&
+          filter === "completed" &&
+          todos
+            .filter((todo: any) => todo.todo.includes(searchText))
+            .map(
+              (filteredTodo: Todo) =>
+                filteredTodo.completed === true &&
+                !filteredTodo.deleted && (
+                  <TodoItem key={filteredTodo.id} todo={filteredTodo} />
+                )
+            )}
+
+        {todos &&
+          filter === "deleted" &&
+          type === "add" &&
+          todos.map(
+            (todo: Todo) =>
+              todo.deleted && <TodoItem key={todo.id} todo={todo} />
+          )}
+
+        {todos &&
+          filter === "deleted" &&
+          type === "search" &&
+          todos
+            .filter((todo: any) => todo.todo.includes(searchText))
+            .map(
+              (filteredTodo: Todo) =>
+                filteredTodo.deleted && (
+                  <TodoItem key={filteredTodo.id} todo={filteredTodo} />
+                )
+            )}
+      </div>
+      <Filter count={todos.length} />
     </div>
   );
 }
