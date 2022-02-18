@@ -1,0 +1,34 @@
+.todo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 500px;
+  height: 60px;
+  border-bottom: 1px solid gray;
+  gap: 10px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+
+  .completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+
+  &__icon {
+    position: absolute;
+    right: 15px;
+    z-index: 2;
+  }
+  &__content {
+    line-height: 100%;
+    text-align: left;
+    border: none;
+    width: auto;
+    max-width: 400px;
+    &:focus {
+      outline: none;
+      color: rgba(120, 248, 147, 0.815);
+    }
+  }
+}
