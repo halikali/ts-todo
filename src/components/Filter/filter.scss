@@ -1,0 +1,38 @@
+.filter {
+  width: 500px;
+  height: 50px;
+  background-color: rgb(236, 253, 203);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid gray;
+  border-top: none;
+
+  &__icon-wrapper {
+    width: 150px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__selector-wrapper {
+    width: 250px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  &__selector {
+    cursor: pointer;
+
+    &.active {
+      border: 1px solid gray;
+      padding: 5px;
+    }
+  }
+}
