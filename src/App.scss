@@ -1,0 +1,38 @@
+@import "./common-css/normalize";
+@import "./common-css/reset";
+
+.app {
+  width: 500px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 50px auto;
+  -webkit-box-shadow: 11px 20px 14px 7px rgba(0, 0, 0, 0.59);
+  box-shadow: 11px 20px 14px 7px rgba(0, 0, 0, 0.59);
+  padding: 5px;
+  &__title {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+  }
+
+  .todo-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .todo-input {
+    width: 100%;
+    text-indent: 10px;
+  }
+}
