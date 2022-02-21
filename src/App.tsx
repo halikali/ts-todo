@@ -16,13 +16,10 @@ function App() {
   const filter = useSelector((state: any) => state.filterReducer.filter);
   const type = useSelector((state: any) => state.inputReducer.type);
   const { searchText } = useSelector((state: any) => state.searchReducer);
-  const lengthCheck = (filter: string) => {
-    // todos.filter((todo: Todo) => {todo.completed === false});
-  };
+
 
   useEffect(() => {
     dispatch(getAllTodo());
-    lengthCheck("all");
   }, []);
 
   return (
@@ -44,7 +41,7 @@ function App() {
           filter === "active" &&
           type === "add" &&
           todos.map(
-            (todo: Todo, i: number) =>
+            (todo: Todo) =>
               todo.completed === false &&
               !todo.deleted && <TodoItem key={todo.id} todo={todo} />
           )}
