@@ -10,6 +10,10 @@
   position: relative;
   z-index: 1;
 
+  input[type="checkbox"] {
+    accent-color: #ecfdcb;
+  }
+
   .completed {
     text-decoration: line-through;
     color: gray;
@@ -26,6 +30,7 @@
     border: none;
     width: auto;
     max-width: 400px;
+
     &:focus {
       outline: none;
       color: rgba(120, 248, 147, 0.815);
