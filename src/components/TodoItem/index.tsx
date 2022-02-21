@@ -26,7 +26,7 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
 
   useEffect(() => {
     setText(todo.todo);
-  }, []);
+  }, [todo.todo]);
 
   const checkCompeleted = (e: any, id: string) => {
     if (todo.completed) {
