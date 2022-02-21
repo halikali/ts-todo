@@ -18,7 +18,7 @@ const TodoAppHomePage = () => {
 
   useEffect(() => {
     dispatch(getAllTodo());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
