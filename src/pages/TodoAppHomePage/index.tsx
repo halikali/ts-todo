@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getAllTodo } from "../../store/actions";
-import { Todo } from "../../types/todoTypes";
-import InputComponent from "../../components/InputComponent";
-import Filter from "../../components/Filter";
-import Search from "../../components/Search";
-import TodoItem from "../../components/TodoItem";
+import { getAllTodo } from "store/actions";
+import { Todo } from "types/todoTypes";
+import InputComponent from "components/InputComponent";
+import Filter from "components/Filter";
+import Search from "components/Search";
+import TodoItem from "components/TodoItem";
 
 const TodoAppHomePage = () => {
   const dispatch = useDispatch();
