@@ -1,4 +1,4 @@
-import { FilterAction } from "../../types/filterTypes";
+import { FilterAction } from "types/filterTypes";
 
 const initialState = {
   filter: "all",
