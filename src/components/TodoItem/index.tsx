@@ -9,8 +9,8 @@ import {
   notCompleteTodo,
   softDelTodo,
   updateTodo,
-} from "../../store/actions";
-import { Todo } from "../../types/todoTypes";
+} from "store/actions";
+import { Todo } from "types/todoTypes";
 
 import "./todo-item.scss";
 
