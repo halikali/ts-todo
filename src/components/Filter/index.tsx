@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setFilter, setInputType } from "../../store/actions";
+import { setFilter, setInputType } from "store/actions";
 import "./filter.scss";
 
 interface IFilterProps {
