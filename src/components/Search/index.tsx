@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { setSearchText } from "../../store/actions";
+import { setSearchText } from "store/actions";
 
 import "./search.scss";
 
