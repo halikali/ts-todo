@@ -1,5 +1,6 @@
+import TodoAppHomePage from "pages/TodoAppHomePage";
+
 import "./App.scss";
-import TodoAppHomePage from "./pages/TodoAppHomePage";
 
 const App = () => {
   return (
