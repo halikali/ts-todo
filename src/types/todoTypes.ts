@@ -2,7 +2,7 @@ import { DocumentData } from "firebase/firestore";
 import { ThunkDispatch } from "redux-thunk";
 
 export interface TodoState {
-  todos: any[];
+  todos: Todo[];
   error: string;
   isLoad: boolean;
 }

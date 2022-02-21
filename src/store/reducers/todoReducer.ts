@@ -1,10 +1,12 @@
+import { TodoState } from "types/todoTypes";
+
 const initialState = {
   todos: [],
   error: "",
   isLoad: false,
 };
 
-const todoReducer = (state = initialState, action: any) => {
+const todoReducer = (state: TodoState = initialState, action: any) => {
   switch (action.type) {
     case "GET_TODO_REQUEST":
       return { ...state, isLoad: false };

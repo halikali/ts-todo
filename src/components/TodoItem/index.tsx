@@ -2,6 +2,7 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+
 import {
   completeTodo,
   delTodo,
@@ -10,9 +11,8 @@ import {
   softDelTodo,
   updateTodo,
 } from "store/actions";
-import { Todo } from "types/todoTypes";
-
 import "./todo-item.scss";
+import { Todo } from "types/todoTypes";
 
 interface ITodoItemProps {
   todo: Todo;
