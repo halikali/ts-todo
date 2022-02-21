@@ -24,7 +24,7 @@ const TodoAppHomePage = () => {
     <>
       {type === "add" ? <InputComponent /> : <Search />}
       <div className="todo-list">
-        {todos.length == 0 && <h2>No Todos</h2>}
+        {todos.length === 0 && <h2>No Todos</h2>}
 
         {todos &&
           filter === "all" &&
