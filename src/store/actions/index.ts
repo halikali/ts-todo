@@ -11,7 +11,7 @@ import { db } from "../../firebase";
 export const addTodo = (todo: string) => {
   addDoc(collection(db, "todos"), {
     todo,
-    completed: false,
+    status: "active",
   });
 };
 
@@ -34,19 +34,17 @@ export const getAllTodo = () => {
 
 export const completeTodo = (id: string) => {
   return () => {
-    updateDoc(doc(collection(db, "todos"), id), { completed: true });
+    updateDoc(doc(collection(db, "todos"), id), {
+      status: "completed",
+    });
   };
 };
 
 export const notCompleteTodo = (id: string) => {
   return () => {
-    updateDoc(doc(collection(db, "todos"), id), { completed: false });
-  };
-};
-
-export const setFilter = (filter: string) => {
-  return (dispatch: any) => {
-    dispatch({ type: "SET_FILTER", payload: filter });
+    updateDoc(doc(collection(db, "todos"), id), {
+      status: "active",
+    });
   };
 };
 
@@ -58,7 +56,9 @@ export const delTodo = (id: string) => {
 
 export const softDelTodo = (id: string) => {
   return async () => {
-    await updateDoc(doc(collection(db, "todos"), id), { deleted: true });
+    await updateDoc(doc(collection(db, "todos"), id), {
+      status: "deleted",
+    });
   };
 };
 
@@ -77,5 +77,11 @@ export const setInputType = (inputType: string) => {
 export const setSearchText = (text: string) => {
   return (dispatch: any) => {
     dispatch({ type: "SET_SEARCH_TEXT", payload: text });
+  };
+};
+
+export const setFilter = (filter: string) => {
+  return (dispatch: any) => {
+    dispatch({ type: "SET_FILTER", payload: filter });
   };
 };
