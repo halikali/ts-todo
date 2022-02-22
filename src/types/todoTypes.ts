@@ -10,8 +10,7 @@ export interface TodoState {
 export interface Todo {
   id: string;
   todo: string;
-  completed: boolean;
-  deleted?: boolean;
+  status?: string;
 }
 
 interface Get_Todo_start {
