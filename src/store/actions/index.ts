@@ -85,9 +85,3 @@ export const setFilter = (filter: string) => {
     dispatch({ type: "SET_FILTER", payload: filter });
   };
 };
-
-export const setCount = (count: number) => {
-  return (dispatch: any) => {
-    dispatch({ type: "SET_COUNT", payload: count });
-  };
-};
