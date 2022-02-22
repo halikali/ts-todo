@@ -1,6 +1,6 @@
+import React, { useEffect, useState, Children } from "react";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import {
@@ -8,24 +8,28 @@ import {
   delTodo,
   getAllTodo,
   notCompleteTodo,
+  setCount,
   softDelTodo,
   updateTodo,
 } from "store/actions";
-import "./todo-item.scss";
 import { Todo } from "types/todoTypes";
+import "./todo-item.scss";
 
 interface ITodoItemProps {
   todo: Todo;
 }
 
 const TodoItem: React.FC<ITodoItemProps> = (props) => {
-  const { todo } = props;
+  const { todo, children } = props;
+  const count = Children.count(children);
 
   const [text, setText] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
     setText(todo.todo);
+    dispatch(setCount(count));
+    console.log(props);
   }, [todo.todo]);
 
   const checkCompeleted = (e: any, id: string) => {
