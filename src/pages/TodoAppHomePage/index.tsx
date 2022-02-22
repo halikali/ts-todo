@@ -20,41 +20,45 @@ const TodoAppHomePage = () => {
     dispatch(getAllTodo());
   }, [dispatch]);
 
-  const checkAddCondition = (filterType: string) => {
-    switch (filterType) {
-      case "all":
-        return todos.map(
-          (todo: Todo) =>
-            todo.status !== "deleted" && <TodoItem key={todo.id} todo={todo} />
-        );
-      default:
-        return todos.map(
-          (todo: Todo) =>
-            todo.status === filterType && <TodoItem key={todo.id} todo={todo} />
-        );
-    }
-  };
-
-  const checkSearchCondition = (filterType: string) => {
-    switch (filterType) {
-      case "all":
-        return todos
-          .filter((todo: any) => todo.todo.includes(searchText))
-          .map(
-            (filteredTodo: Todo) =>
-              filteredTodo.status !== "deleted" && (
-                <TodoItem key={filteredTodo.id} todo={filteredTodo} />
+  const dynamicRendering = (filterType: string, statusType: string) => {
+    if (statusType === "search") {
+      switch (filterType) {
+        case "all":
+          return todos
+            .filter((todo: any) => todo.todo.includes(searchText))
+            .map(
+              (filteredTodo: Todo) =>
+                filteredTodo.status !== "deleted" && (
+                  <TodoItem key={filteredTodo.id} todo={filteredTodo} />
+                )
+            );
+        default:
+          return todos
+            .filter((todo: any) => todo.todo.includes(searchText))
+            .map(
+              (filteredTodo: Todo) =>
+                filteredTodo.status === filterType && (
+                  <TodoItem key={filteredTodo.id} todo={filteredTodo} />
+                )
+            );
+      }
+    } else {
+      switch (filterType) {
+        case "all":
+          return todos.map(
+            (todo: Todo) =>
+              todo.status !== "deleted" && (
+                <TodoItem key={todo.id} todo={todo} />
               )
           );
-      default:
-        return todos
-          .filter((todo: any) => todo.todo.includes(searchText))
-          .map(
-            (filteredTodo: Todo) =>
-              filteredTodo.status === filterType && (
-                <TodoItem key={filteredTodo.id} todo={filteredTodo} />
+        default:
+          return todos.map(
+            (todo: Todo) =>
+              todo.status === filterType && (
+                <TodoItem key={todo.id} todo={todo} />
               )
           );
+      }
     }
   };
 
@@ -65,9 +69,7 @@ const TodoAppHomePage = () => {
         <div className="todo-list">
           {todos.length === 0 && <h2>No Todos</h2>}
 
-          {todos && type === "add"
-            ? checkAddCondition(filter)
-            : checkSearchCondition(filter)}
+          {todos && dynamicRendering(filter, type)}
         </div>
       </LoadCheck>
       <Filter count={todos.length} />
