@@ -29,23 +29,28 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
   }, [todo.todo]);
 
   const checkCompeleted = (e: any, id: string) => {
-    if (todo.completed) {
-      dispatch(notCompleteTodo(id));
+    try {
+      switch (todo.status) {
+        case "completed":
+          dispatch(notCompleteTodo(id));
+          break;
+        case "active":
+          dispatch(completeTodo(id));
+          break;
+        default:
+          break;
+      }
+    } finally {
+      dispatch(getAllTodo());
     }
-
-    if (!todo.completed) {
-      dispatch(completeTodo(id));
-    }
-
-    dispatch(getAllTodo());
   };
 
   const removeTodo = (e: any, id: string) => {
     e.stopPropagation();
-    
+
     dispatch(softDelTodo(id));
 
-    if (todo.deleted) {
+    if (todo.status === "deleted") {
       dispatch(delTodo(id));
     }
 
@@ -66,9 +71,16 @@ const TodoItem: React.FC<ITodoItemProps> = (props) => {
 
   return (
     <div className="todo" onClick={(e) => checkCompeleted(e, todo.id)}>
-      <input type="checkbox" checked={todo.completed} name="todo" />
       <input
-        className={`todo__content ${todo.completed && "completed"}`}
+        type="checkbox"
+        checked={todo.status === "completed"}
+        name="todo"
+        onChange={(e) => checkCompeleted(e, todo.id)}
+      />
+      <input
+        className={`todo__content ${
+          todo.status === "completed" && "completed"
+        }`}
         onClick={(e) => onClickHandler(e)}
         value={text}
         onChange={(e) => {
