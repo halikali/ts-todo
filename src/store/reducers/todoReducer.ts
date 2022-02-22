@@ -4,6 +4,7 @@ const initialState = {
   todos: [],
   error: "",
   isLoad: false,
+  count: 0,
 };
 
 const todoReducer = (state: TodoState = initialState, action: any) => {
@@ -17,6 +18,8 @@ const todoReducer = (state: TodoState = initialState, action: any) => {
     case "GET_TODO_FAILURE":
       return { ...state, error: action.error, isLoad: false };
 
+    case "SET_COUNT":
+      return { ...state, count: action.payload };
     default:
       return state;
   }
