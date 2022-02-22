@@ -21,13 +21,14 @@ const TodoAppHomePage = () => {
   }, [dispatch]);
 
   const dynamicRendering = (filterType: string, statusType: string) => {
+    let count = 0;
     if (statusType === "search") {
       switch (filterType) {
         case "all":
           return todos
             .filter((todo: any) => todo.todo.includes(searchText))
             .map(
-              (filteredTodo: Todo) =>
+              (filteredTodo: Todo, i: number) =>
                 filteredTodo.status !== "deleted" && (
                   <TodoItem key={filteredTodo.id} todo={filteredTodo} />
                 )
@@ -68,7 +69,6 @@ const TodoAppHomePage = () => {
       <LoadCheck isLoad={isLoad}>
         <div className="todo-list">
           {todos.length === 0 && <h2>No Todos</h2>}
-
           {todos && dynamicRendering(filter, type)}
         </div>
       </LoadCheck>
