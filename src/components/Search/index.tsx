@@ -1,29 +1,33 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSearchText } from "store/actions";
 
 import "./search.scss";
 
 const Search = () => {
+  const [text, setText] = useState("");
   const dispatch = useDispatch();
-  const refInputSearch = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: any, text: string) => {
+  const onChangeHandler = (e: any) => {
     e.preventDefault();
-    dispatch(setSearchText(text));
+    setText(e.target.value);
+    e.target.value === ""
+      ? dispatch(setSearchText(""))
+      : dispatch(setSearchText(text));
   };
 
   return (
-    <form
-      className="search"
-      onSubmit={(e) => handleSubmit(e, refInputSearch.current!.value)}
-    >
+    <form className="search">
       <input
         type="search"
         name="search"
         id="search"
         placeholder="Search somethings ..."
-        ref={refInputSearch}
+        onChange={(e) => {
+          onChangeHandler(e);
+        }}
+        value={text}
+        autoComplete="off"
       />
     </form>
   );
