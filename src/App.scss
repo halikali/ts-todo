@@ -2,7 +2,8 @@
 @import "./common-css/reset";
 
 .app {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -12,6 +13,7 @@
   -webkit-box-shadow: 11px 20px 14px 7px rgba(0, 0, 0, 0.59);
   box-shadow: 11px 20px 14px 7px rgba(0, 0, 0, 0.59);
   padding: 5px;
+
   &__title {
     font-size: 32px;
     margin-bottom: 10px;
@@ -21,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
+    width: 100%;
   }
 
   .todo-list {
@@ -34,5 +36,15 @@
   .todo-input {
     width: 100%;
     text-indent: 10px;
+    height: 40px;
+    border: 0px;
+    border-bottom: 2px solid gray;
+    transition: 0.5s all ease;
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid rgba(120, 248, 147, 0.815);
+      transition: 0.5s all ease;
+    }
   }
 }
