@@ -1,8 +1,18 @@
 .search {
   width: 100%;
-  
+
   input {
     width: 100%;
     text-indent: 10px;
+    height: 40px;
+    border: 0px;
+    border-bottom: 2px solid gray;
+    transition: 0.5s all ease;
+
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid rgba(40, 161, 231, 0.815);
+      transition: 0.5s all ease;
+    }
   }
 }
