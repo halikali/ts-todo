@@ -50,9 +50,9 @@ const Filter: React.FC<IFilterProps> = (props) => {
           onClick={(e) => {
             changeInputType(e);
           }}
-          className="filter__icon"
+          className="filter__icon--count"
         />
-        <span className="filter__icon-count">| {count} items left</span>
+        <span className="filter__count-text">| {count} items left</span>
       </div>
 
       <div className="filter__selector-wrapper">
